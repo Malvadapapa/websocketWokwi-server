@@ -56,9 +56,9 @@ def handle_led_control(data):
             with conn.cursor() as cursor:
                 cursor.execute("INSERT INTO led_log (timestamp, led_status) VALUES (NOW(), %s)", (led_status,))
             conn.commit()
-        emit('led_status', {'message': 'LED status updated', 'led_status': led_status})
+        emit('led_status', {'message': 'Estado del led guardado exitosamete en la base de datos', 'led_status': led_status})
     except Exception as e:
         emit('error', {'error': str(e)})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True, host='0.0.0.0', port=5000, allow_unsafe_werkzeug=True)
+    socketio.run(app, debug=True, host='0.0.0.0', port=5000)
